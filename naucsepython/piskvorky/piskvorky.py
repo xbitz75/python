@@ -26,11 +26,15 @@ def tah_hrace(pole):
     """
     spravny_input = False
     while spravny_input == False:
-        pozice = int(input("Na jakou pozici chcete hrat?: "))
-        if pozice >= 0 and pozice <= 19 and pole[pozice] != "x" and pole[pozice] != "o":
-            spravny_input = True
-        else:
-            print("\n Spatna pozice, zkus to znovu \n")
+        pozice = input("Na jakou pozici chcete hrat?: ")
+        try:
+            pozice = int(pozice)
+            if pozice >= 0 and pozice <= 19 and pole[pozice] != "x" and pole[pozice] != "o":
+                spravny_input = True
+            else:
+                print("\n Spatna pozice, zkus to znovu \n")
+        except ValueError:
+            print("Nebylo mozne vytvorit integer")
     pole = tah(pole, pozice, "x")
     print(pole + "\n")
     return pole
