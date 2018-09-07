@@ -1,3 +1,5 @@
+import util
+import ai
 import random
 
 def vyhodnot(pole):
@@ -14,12 +16,6 @@ def vyhodnot(pole):
         vysledek = "-"
     return vysledek
 
-def tah(pole, cislo_pole, zadany_symbol):
-    """
-    prijme parametry a vykona tah
-    """
-    return pole[:cislo_pole] + zadany_symbol + pole[cislo_pole + 1:] 
-
 def tah_hrace(pole):
     """
     prijme input a preda ho funkci tah
@@ -35,28 +31,15 @@ def tah_hrace(pole):
                 print("\n Spatna pozice, zkus to znovu \n")
         except ValueError:
             print("Nebylo mozne vytvorit integer")
-    pole = tah(pole, pozice, "x")
+    pole = util.tah(pole, pozice, "x")
     print(pole + "\n")
     return pole
     
-def tah_pocitace(pole):
-    """
-    vygeneruje tah pocitace a preda funckci tah
-    """
-    spravny_input = False
-    while spravny_input == False:
-        rng = random.randint(0, 19)
-        if pole[rng] == "-":
-            spravny_input = True
-    pole = tah(pole, rng, "o")
-    print(pole + "\n")
-    return pole
-
 def piskvorky1d():
     pole = "--------------------"
     vyhodnot(pole)
     while vyhodnot(pole) == "-":
-        pole = tah_pocitace(pole)
+        pole = ai.tah_pocitace(pole)
         if vyhodnot(pole) == "o":
             print("pc vyhral")
             break
