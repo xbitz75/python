@@ -70,3 +70,5 @@ def piskvorky1d():
         if vyhodnot(pole) == "!":
             print("remiza")
             break
+
+piskvorky1d()
